@@ -27,19 +27,22 @@ jobs:
           if [[ "${GITHUB_REF_NAME}" == "production" ]]; then
             echo "DEPLOY_HOST=${{ secrets.PROD_HOST }}" >> "$GITHUB_ENV"
             echo "DEPLOY_USER=${{ secrets.PROD_USER }}" >> "$GITHUB_ENV"
-            echo "DEPLOY_PORT=${{ secrets.PROD_PORT || '22' }}" >> "$GITHUB_ENV"
+            echo "DEPLOY_PORT=${PROD_PORT:-22}" >> "$GITHUB_ENV"
             echo "DEPLOY_PATH=${{ secrets.PROD_PATH }}" >> "$GITHUB_ENV"
             echo "DEPLOY_ENV=production" >> "$GITHUB_ENV"
           elif [[ "${GITHUB_REF_NAME}" == "staging" ]]; then
             echo "DEPLOY_HOST=${{ secrets.STAGE_HOST }}" >> "$GITHUB_ENV"
             echo "DEPLOY_USER=${{ secrets.STAGE_USER }}" >> "$GITHUB_ENV"
-            echo "DEPLOY_PORT=${{ secrets.STAGE_PORT || '22' }}" >> "$GITHUB_ENV"
+            echo "DEPLOY_PORT=${STAGE_PORT:-22}" >> "$GITHUB_ENV"
             echo "DEPLOY_PATH=${{ secrets.STAGE_PATH }}" >> "$GITHUB_ENV"
             echo "DEPLOY_ENV=staging" >> "$GITHUB_ENV"
           else
             echo "Unsupported branch ${GITHUB_REF_NAME}" >&2
             exit 1
           fi
+        env:
+          PROD_PORT: ${{ secrets.PROD_PORT }}
+          STAGE_PORT: ${{ secrets.STAGE_PORT }}
 
       - name: Validate required deployment values
         shell: bash
