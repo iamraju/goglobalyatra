@@ -1,0 +1,118 @@
+name: Deploy PHP Site
+
+on:
+  push:
+    branches:
+      - production
+      - staging
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Select deployment target from branch
+        id: target
+        shell: bash
+        run: |
+          set -e
+
+          if [[ "${GITHUB_REF_NAME}" == "production" ]]; then
+            echo "host=${{ secrets.PROD_HOST }}" >> "$GITHUB_OUTPUT"
+            echo "user=${{ secrets.PROD_USER }}" >> "$GITHUB_OUTPUT"
+            echo "port=${{ secrets.PROD_PORT }}" >> "$GITHUB_OUTPUT"
+            echo "path=${{ secrets.PROD_PATH }}" >> "$GITHUB_OUTPUT"
+            echo "ssh_key=${{ secrets.PROD_SSH_KEY }}" >> "$GITHUB_OUTPUT"
+            echo "env_name=production" >> "$GITHUB_OUTPUT"
+          elif [[ "${GITHUB_REF_NAME}" == "staging" ]]; then
+            echo "host=${{ secrets.STAGE_HOST }}" >> "$GITHUB_OUTPUT"
+            echo "user=${{ secrets.STAGE_USER }}" >> "$GITHUB_OUTPUT"
+            echo "port=${{ secrets.STAGE_PORT }}" >> "$GITHUB_OUTPUT"
+            echo "path=${{ secrets.STAGE_PATH }}" >> "$GITHUB_OUTPUT"
+            echo "ssh_key=${{ secrets.STAGE_SSH_KEY }}" >> "$GITHUB_OUTPUT"
+            echo "env_name=staging" >> "$GITHUB_OUTPUT"
+          else
+            echo "Unsupported branch ${GITHUB_REF_NAME}" >&2
+            exit 1
+          fi
+
+      - name: Validate required deployment values
+        shell: bash
+        run: |
+          set -e
+
+          if [[ -z "${{ steps.target.outputs.host }}" || -z "${{ steps.target.outputs.user }}" || -z "${{ steps.target.outputs.path }}" || -z "${{ steps.target.outputs.ssh_key }}" ]]; then
+            echo "Missing deployment secrets for branch ${GITHUB_REF_NAME}." >&2
+            echo "Set branch-specific secrets in GitHub Actions secrets." >&2
+            exit 1
+          fi
+
+          if [[ -z "${{ steps.target.outputs.port }}" ]]; then
+            echo "port=22" >> "$GITHUB_ENV"
+          else
+            echo "port=${{ steps.target.outputs.port }}" >> "$GITHUB_ENV"
+          fi
+
+      - name: Start SSH agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ steps.target.outputs.ssh_key }}
+
+      - name: Add server to known hosts
+        shell: bash
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -p "${{ env.port }}" -H "${{ steps.target.outputs.host }}" >> ~/.ssh/known_hosts
+
+      - name: Ensure target directory exists
+        shell: bash
+        run: |
+          ssh -p "${{ env.port }}" "${{ steps.target.outputs.user }}@${{ steps.target.outputs.host }}" "mkdir -p '${{ steps.target.outputs.path }}'"
+
+      - name: Sync files to server
+        shell: bash
+        run: |
+          rsync -az --delete \
+            --exclude '.git/' \
+            --exclude '.github/' \
+            --exclude '.env' \
+            --exclude 'vendor/' \
+            --exclude '.DS_Store' \
+            -e "ssh -p ${{ env.port }}" \
+            ./ "${{ steps.target.outputs.user }}@${{ steps.target.outputs.host }}:${{ steps.target.outputs.path }}/"
+
+      - name: Install dependencies and validate on server
+        shell: bash
+        run: |
+          ssh -p "${{ env.port }}" "${{ steps.target.outputs.user }}@${{ steps.target.outputs.host }}" "
+            set -e
+            cd '${{ steps.target.outputs.path }}'
+
+            if [ ! -f .env ]; then
+              cp .env.example .env
+              echo '.env was created from .env.example. Update it on server.'
+            fi
+
+            if ! command -v composer >/dev/null 2>&1; then
+              echo 'composer is not installed on server.' >&2
+              exit 1
+            fi
+
+            composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction
+            php -l index.php >/dev/null
+          "
+
+      - name: Deployment summary
+        run: |
+          echo "Deployment completed for ${GITHUB_REF_NAME}."
+          echo "Target: ${{ steps.target.outputs.env_name }}"
+          echo "Host: ${{ steps.target.outputs.host }}"
+          echo "Path: ${{ steps.target.outputs.path }}"

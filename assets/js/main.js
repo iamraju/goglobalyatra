@@ -94,9 +94,7 @@ const initBookingPrefill = () => {
 };
 
 const initHomepageSearchRedirect = () => {
-  const searchForm = document.querySelector(
-    "form[action='outbound-packages.html']",
-  );
+  const searchForm = document.querySelector("[data-home-search-form]");
   if (!searchForm) return;
 
   searchForm.addEventListener("submit", (event) => {
@@ -116,7 +114,10 @@ const initHomepageSearchRedirect = () => {
       }
     });
 
-    window.location.href = `outbound-packages.html?${params.toString()}`;
+    const query = params.toString();
+    window.location.href = query
+      ? `outbound-packages.php?${query}`
+      : "outbound-packages.php";
   });
 };
 
