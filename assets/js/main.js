@@ -93,10 +93,38 @@ const initBookingPrefill = () => {
   }
 };
 
+const initHomepageSearchRedirect = () => {
+  const searchForm = document.querySelector(
+    "form[action='outbound-packages.html']",
+  );
+  if (!searchForm) return;
+
+  searchForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    if (!searchForm.checkValidity()) {
+      searchForm.reportValidity();
+      return;
+    }
+
+    const formData = new FormData(searchForm);
+    const params = new URLSearchParams();
+
+    formData.forEach((value, key) => {
+      if (String(value).trim() !== "") {
+        params.set(key, String(value));
+      }
+    });
+
+    window.location.href = `outbound-packages.html?${params.toString()}`;
+  });
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   initMobileMenu();
   initBannerSlider();
   initDateInputs();
   setYear();
   initBookingPrefill();
+  initHomepageSearchRedirect();
 });
