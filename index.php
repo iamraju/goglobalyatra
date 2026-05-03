@@ -103,12 +103,14 @@ include __DIR__ . '/includes/partials/header.php';
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
       <?php foreach ($popularPackages as $package): ?>
         <article class="package-card bg-white rounded-xl shadow-lg overflow-hidden border border-slate-100">
-          <div class="h-48 overflow-hidden"><img src="<?= e($package['image_url']) ?>" alt="<?= e($package['title']) ?>" class="w-full h-full object-cover" /></div>
-          <div class="p-5">
-            <h3 class="font-bold text-xl"><?= e($package['title']) ?></h3>
-            <p class="text-slate-600 mt-1"><?= e($package['duration']) ?></p>
-            <a href="booking.php?package=<?= e($package['slug']) ?>" class="inline-flex mt-4 px-4 py-2 rounded-lg brand-gradient text-white font-medium">Book Now</a>
-          </div>
+          <a href="<?= e(package_details_url((string) $package['slug'])) ?>" class="block">
+            <div class="h-48 overflow-hidden"><img src="<?= e($package['image_url']) ?>" alt="<?= e($package['title']) ?>" class="w-full h-full object-cover" /></div>
+            <div class="p-5">
+              <h3 class="font-bold text-xl"><?= e($package['title']) ?></h3>
+              <p class="text-slate-600 mt-1"><?= e($package['duration']) ?></p>
+              <span class="inline-flex mt-4 px-4 py-2 rounded-lg brand-gradient text-white font-medium">View Details</span>
+            </div>
+          </a>
         </article>
       <?php endforeach; ?>
     </div>

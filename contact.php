@@ -65,40 +65,46 @@ include __DIR__ . '/includes/partials/flash.php';
 ?>
 
 <main>
-  <section class="max-w-7xl mx-auto px-4 py-14 grid lg:grid-cols-2 gap-8">
-    <article class="bg-white rounded-2xl shadow-xl border border-slate-100 p-7">
-      <h2 class="text-2xl font-bold text-slate-900">Contact Details</h2>
-      <ul class="mt-5 space-y-3 text-slate-700 leading-7">
-        <li><strong>Company Name:</strong> <?= e($config['site']['name']) ?></li>
-        <li><strong>Address:</strong> <?= e($config['site']['address']) ?></li>
-        <li><strong>Email:</strong> <?= e($config['site']['topbar_email']) ?></li>
-        <li><strong>Phone:</strong> <?= e($config['site']['topbar_phone']) ?></li>
-      </ul>
-    </article>
+  <section class="max-w-7xl mx-auto px-4 py-14 grid lg:grid-cols-[7fr_3fr] gap-8 items-start">
+    <div class="space-y-8">
+      <article class="bg-white rounded-2xl shadow-xl border border-slate-100 p-7">
+        <h2 class="text-2xl font-bold text-slate-900">Contact Details</h2>
+        <ul class="mt-5 space-y-3 text-slate-700 leading-7">
+          <li><strong>Company Name:</strong> <?= e($config['site']['name']) ?></li>
+          <li><strong>Address:</strong> <?= e($config['site']['address']) ?></li>
+          <li><strong>Email:</strong> <?= e($config['site']['topbar_email']) ?></li>
+          <li><strong>Phone:</strong> <?= e($config['site']['topbar_phone']) ?></li>
+        </ul>
+      </article>
 
-    <article class="bg-white rounded-2xl shadow-xl border border-slate-100 p-7">
-      <h2 class="text-2xl font-bold text-slate-900">Send a Message</h2>
-      <form class="mt-5 grid gap-4" action="contact.php" method="post">
-        <?= csrf_input() ?>
-        <div>
-          <label for="name" class="block mb-2 text-sm font-medium">Full Name</label>
-          <input id="name" type="text" name="full_name" value="<?= e(old_value('full_name')) ?>" class="w-full rounded-lg border border-slate-300 px-3 py-2" required />
-        </div>
-        <div>
-          <label for="email" class="block mb-2 text-sm font-medium">Email</label>
-          <input id="email" type="email" name="email" value="<?= e(old_value('email')) ?>" class="w-full rounded-lg border border-slate-300 px-3 py-2" required />
-        </div>
-        <div>
-          <label for="phone" class="block mb-2 text-sm font-medium">Phone</label>
-          <input id="phone" type="tel" name="phone" value="<?= e(old_value('phone')) ?>" class="w-full rounded-lg border border-slate-300 px-3 py-2" required />
-        </div>
-        <div>
-          <label for="message" class="block mb-2 text-sm font-medium">Message</label>
-          <textarea id="message" name="message" rows="5" class="w-full rounded-lg border border-slate-300 px-3 py-2" required><?= e(old_value('message')) ?></textarea>
-        </div>
-        <button type="submit" class="rounded-lg brand-gradient text-white px-6 py-3 font-semibold">Send Message</button>
-      </form>
-    </article>
+      <article class="bg-white rounded-2xl shadow-xl border border-slate-100 p-7">
+        <h2 class="text-2xl font-bold text-slate-900">Send a Message</h2>
+        <form class="mt-5 grid gap-4" action="contact.php" method="post">
+          <?= csrf_input() ?>
+          <div>
+            <label for="name" class="block mb-2 text-sm font-medium">Full Name</label>
+            <input id="name" type="text" name="full_name" value="<?= e(old_value('full_name')) ?>" class="w-full rounded-lg border border-slate-300 px-3 py-2" required />
+          </div>
+          <div>
+            <label for="email" class="block mb-2 text-sm font-medium">Email</label>
+            <input id="email" type="email" name="email" value="<?= e(old_value('email')) ?>" class="w-full rounded-lg border border-slate-300 px-3 py-2" required />
+          </div>
+          <div>
+            <label for="phone" class="block mb-2 text-sm font-medium">Phone</label>
+            <input id="phone" type="tel" name="phone" value="<?= e(old_value('phone')) ?>" class="w-full rounded-lg border border-slate-300 px-3 py-2" required />
+          </div>
+          <div>
+            <label for="message" class="block mb-2 text-sm font-medium">Message</label>
+            <textarea id="message" name="message" rows="5" class="w-full rounded-lg border border-slate-300 px-3 py-2" required><?= e(old_value('message')) ?></textarea>
+          </div>
+          <button type="submit" class="rounded-lg brand-gradient text-white px-6 py-3 font-semibold">Send Message</button>
+        </form>
+      </article>
+    </div>
+
+    <div>
+      <?php include __DIR__ . '/includes/partials/popular-packages-sidebar.php'; ?>
+    </div>
   </section>
 </main>
 

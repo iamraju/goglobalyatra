@@ -5,7 +5,7 @@ $navItems = nav_items();
 ?>
 <header class="bg-white/95 border-b border-slate-200 sticky top-0 z-50 backdrop-blur">
   <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-    <a href="index.php" class="flex items-center gap-3" aria-label="<?= e($config['site']['name']) ?> home">
+    <a href="/" class="flex items-center gap-3" aria-label="<?= e($config['site']['name']) ?> home">
       <img src="<?= e($config['site']['logo']) ?>" alt="<?= e($config['site']['name']) ?> logo" class="h-12 w-auto" />
     </a>
 

@@ -74,6 +74,7 @@ $heroSubtitle = 'Send your travel booking request and our team will contact you 
 $packageSlug = trim((string) ($_GET['package'] ?? old_value('package_slug')));
 $preselectedPackage = package_by_slug($config, $packageSlug);
 $allPackages = active_packages($config);
+$preselectedPackageSlug = $preselectedPackage['slug'] ?? old_value('package_slug');
 
 include __DIR__ . '/includes/partials/head.php';
 include __DIR__ . '/includes/partials/topbar.php';
@@ -83,65 +84,18 @@ include __DIR__ . '/includes/partials/flash.php';
 ?>
 
 <main>
-  <section class="max-w-4xl mx-auto px-4 py-14">
-    <form class="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 md:p-8 grid md:grid-cols-2 gap-5" method="post" action="booking.php">
-      <?= csrf_input() ?>
+    <section class="max-w-7xl mx-auto px-4 py-14 grid lg:grid-cols-[7fr_3fr] gap-8 items-start">
+        <div>
+      <?php
+      $formTitle = 'Booking Form';
+      $formIntro = 'Submit your details and we will confirm itinerary options quickly.';
+      include __DIR__ . '/includes/partials/booking-form.php';
+      ?>
+    </div>
 
-      <div class="md:col-span-2">
-        <label for="package-slug" class="block mb-2 text-sm font-medium">Package Name</label>
-        <select data-package-name id="package-slug" name="package_slug" class="w-full rounded-lg border border-slate-300 px-3 py-2" required>
-          <option value="">Select package</option>
-          <?php foreach ($allPackages as $package):
-              $selected = ($preselectedPackage && $preselectedPackage['slug'] === $package['slug']) || old_value('package_slug') === $package['slug']; ?>
-            <option value="<?= e($package['slug']) ?>" <?= $selected ? 'selected' : '' ?>><?= e($package['title']) ?></option>
-          <?php endforeach; ?>
-        </select>
-      </div>
-
-      <div>
-        <label for="travel-date" class="block mb-2 text-sm font-medium">Date</label>
-        <input id="travel-date" type="date" name="travel_date" value="<?= e(old_value('travel_date')) ?>" class="w-full rounded-lg border border-slate-300 px-3 py-2" required />
-      </div>
-
-      <div>
-        <label for="persons" class="block mb-2 text-sm font-medium">Number of Packs / Persons</label>
-        <select id="persons" name="persons" class="w-full rounded-lg border border-slate-300 px-3 py-2" required>
-          <option value="">Select persons</option>
-          <?php foreach ($config['search_filters']['persons'] as $person): ?>
-            <option value="<?= e($person) ?>" <?= old_value('persons') === $person ? 'selected' : '' ?>><?= e($person) ?></option>
-          <?php endforeach; ?>
-        </select>
-      </div>
-
-      <div>
-        <label for="full-name" class="block mb-2 text-sm font-medium">Full Name</label>
-        <input id="full-name" type="text" name="full_name" value="<?= e(old_value('full_name')) ?>" class="w-full rounded-lg border border-slate-300 px-3 py-2" required />
-      </div>
-
-      <div>
-        <label for="email" class="block mb-2 text-sm font-medium">Email</label>
-        <input id="email" type="email" name="email" value="<?= e(old_value('email')) ?>" class="w-full rounded-lg border border-slate-300 px-3 py-2" required />
-      </div>
-
-      <div>
-        <label for="phone" class="block mb-2 text-sm font-medium">Phone</label>
-        <input id="phone" type="tel" name="phone" value="<?= e(old_value('phone')) ?>" class="w-full rounded-lg border border-slate-300 px-3 py-2" required />
-      </div>
-
-      <div>
-        <label for="address" class="block mb-2 text-sm font-medium">Full Address</label>
-        <input id="address" type="text" name="address" value="<?= e(old_value('address')) ?>" class="w-full rounded-lg border border-slate-300 px-3 py-2" required />
-      </div>
-
-      <div class="md:col-span-2">
-        <label for="message" class="block mb-2 text-sm font-medium">Message</label>
-        <textarea id="message" name="message" rows="5" class="w-full rounded-lg border border-slate-300 px-3 py-2" placeholder="Write any additional requirement..."><?= e(old_value('message')) ?></textarea>
-      </div>
-
-      <div class="md:col-span-2">
-        <button type="submit" class="rounded-lg brand-gradient text-white px-6 py-3 font-semibold">Submit Booking Request</button>
-      </div>
-    </form>
+        <div>
+      <?php include __DIR__ . '/includes/partials/popular-packages-sidebar.php'; ?>
+    </div>
   </section>
 </main>
 
