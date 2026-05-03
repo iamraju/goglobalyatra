@@ -5,6 +5,14 @@ This project deploys automatically when you push to these branches:
 - production
 - staging
 
+Current target setup for this project:
+
+- Domain: goglobalyatra.com (and www.goglobalyatra.com)
+- Deploy path: /var/sites/goglobalyatra
+- PHP-FPM socket: /run/php/php8.3-fpm.sock
+
+Important: pushing to develop does not trigger deployment in the current workflow.
+
 For now, if you only have one production server, you can point both staging and production secrets to the same host/path, or only use the production branch.
 
 ## 1) What is already prepared in this repo
@@ -19,10 +27,10 @@ In GitHub repository:
 
 1. Open Settings -> Secrets and variables -> Actions.
 2. Create these production secrets:
-   - PROD_HOST
-   - PROD_USER
+   - PROD_HOST (your server public IP or hostname)
+   - PROD_USER (example: deploy)
    - PROD_PORT (usually 22)
-   - PROD_PATH (for example /var/www/goglobalyatra)
+   - PROD_PATH (/var/sites/goglobalyatra)
    - PROD_SSH_KEY (private key content; multiline)
 3. Create these staging secrets (optional now, required for staging branch deploy):
    - STAGE_HOST
@@ -60,8 +68,8 @@ Install Composer globally if missing:
 
 ### 3.3 Create app directory
 
-    sudo mkdir -p /var/www/goglobalyatra
-    sudo chown -R deploy:www-data /var/www/goglobalyatra
+    sudo mkdir -p /var/sites/goglobalyatra
+    sudo chown -R deploy:www-data /var/sites/goglobalyatra
 
 ### 3.4 Add GitHub Actions deploy key to server
 
@@ -103,9 +111,9 @@ Suggested config:
 
     server {
         listen 80;
-        server_name your-domain.com www.your-domain.com;
+        server_name goglobalyatra.com www.goglobalyatra.com;
 
-        root /var/www/goglobalyatra;
+        root /var/sites/goglobalyatra;
         index index.php index.html;
 
         location / {
@@ -134,7 +142,7 @@ If your PHP-FPM socket version differs, update fastcgi_pass accordingly.
 
 After first deploy or before it:
 
-    cd /var/www/goglobalyatra
+    cd /var/sites/goglobalyatra
     cp .env.example .env
     nano .env
 
@@ -149,6 +157,7 @@ Important: Workflow never overwrites .env because it is excluded during rsync.
 
 - Push to production branch -> deploys using PROD\_\* secrets.
 - Push to staging branch -> deploys using STAGE\_\* secrets.
+- Push to develop branch -> no deploy (unless workflow is updated to include develop).
 
 Manual run is also available from GitHub Actions via workflow_dispatch.
 
@@ -170,4 +179,30 @@ Manual run is also available from GitHub Actions via workflow_dispatch.
   sudo systemctl status php8.3-fpm
   sudo journalctl -u nginx --no-pager -n 200
 
-- Wrong environment values: verify /var/www/goglobalyatra/.env.
+- Wrong environment values: verify /var/sites/goglobalyatra/.env.
+
+## 10) Your exact next actions
+
+1. In GitHub Secrets, set:
+   - PROD_PATH=/var/sites/goglobalyatra
+   - PROD_PORT=22
+   - PROD_HOST=<your-server-ip-or-domain>
+   - PROD_USER=deploy
+2. On server, ensure this Nginx server block is active for:
+   - goglobalyatra.com
+   - www.goglobalyatra.com
+3. Ensure PHP-FPM 8.3 service is running:
+
+   sudo systemctl status php8.3-fpm
+
+4. Create and fill production env file:
+
+   cd /var/sites/goglobalyatra
+   cp .env.example .env
+   nano .env
+
+5. Push to production branch to trigger deployment:
+
+   git checkout production
+   git merge develop
+   git push origin production
