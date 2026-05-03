@@ -20,25 +20,22 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Select deployment target from branch
-        id: target
         shell: bash
         run: |
           set -e
 
           if [[ "${GITHUB_REF_NAME}" == "production" ]]; then
-            echo "host=${{ secrets.PROD_HOST }}" >> "$GITHUB_OUTPUT"
-            echo "user=${{ secrets.PROD_USER }}" >> "$GITHUB_OUTPUT"
-            echo "port=${{ secrets.PROD_PORT }}" >> "$GITHUB_OUTPUT"
-            echo "path=${{ secrets.PROD_PATH }}" >> "$GITHUB_OUTPUT"
-            echo "ssh_key=${{ secrets.PROD_SSH_KEY }}" >> "$GITHUB_OUTPUT"
-            echo "env_name=production" >> "$GITHUB_OUTPUT"
+            echo "DEPLOY_HOST=${{ secrets.PROD_HOST }}" >> "$GITHUB_ENV"
+            echo "DEPLOY_USER=${{ secrets.PROD_USER }}" >> "$GITHUB_ENV"
+            echo "DEPLOY_PORT=${{ secrets.PROD_PORT || '22' }}" >> "$GITHUB_ENV"
+            echo "DEPLOY_PATH=${{ secrets.PROD_PATH }}" >> "$GITHUB_ENV"
+            echo "DEPLOY_ENV=production" >> "$GITHUB_ENV"
           elif [[ "${GITHUB_REF_NAME}" == "staging" ]]; then
-            echo "host=${{ secrets.STAGE_HOST }}" >> "$GITHUB_OUTPUT"
-            echo "user=${{ secrets.STAGE_USER }}" >> "$GITHUB_OUTPUT"
-            echo "port=${{ secrets.STAGE_PORT }}" >> "$GITHUB_OUTPUT"
-            echo "path=${{ secrets.STAGE_PATH }}" >> "$GITHUB_OUTPUT"
-            echo "ssh_key=${{ secrets.STAGE_SSH_KEY }}" >> "$GITHUB_OUTPUT"
-            echo "env_name=staging" >> "$GITHUB_OUTPUT"
+            echo "DEPLOY_HOST=${{ secrets.STAGE_HOST }}" >> "$GITHUB_ENV"
+            echo "DEPLOY_USER=${{ secrets.STAGE_USER }}" >> "$GITHUB_ENV"
+            echo "DEPLOY_PORT=${{ secrets.STAGE_PORT || '22' }}" >> "$GITHUB_ENV"
+            echo "DEPLOY_PATH=${{ secrets.STAGE_PATH }}" >> "$GITHUB_ENV"
+            echo "DEPLOY_ENV=staging" >> "$GITHUB_ENV"
           else
             echo "Unsupported branch ${GITHUB_REF_NAME}" >&2
             exit 1
@@ -48,34 +45,31 @@ jobs:
         shell: bash
         run: |
           set -e
-
-          if [[ -z "${{ steps.target.outputs.host }}" || -z "${{ steps.target.outputs.user }}" || -z "${{ steps.target.outputs.path }}" || -z "${{ steps.target.outputs.ssh_key }}" ]]; then
-            echo "Missing deployment secrets for branch ${GITHUB_REF_NAME}." >&2
+          missing=()
+          [[ -z "$DEPLOY_HOST" ]] && missing+=("host")
+          [[ -z "$DEPLOY_USER" ]] && missing+=("user")
+          [[ -z "$DEPLOY_PATH" ]] && missing+=("path")
+          if [[ ${#missing[@]} -gt 0 ]]; then
+            echo "Missing deployment secrets for branch ${GITHUB_REF_NAME}: ${missing[*]}" >&2
             echo "Set branch-specific secrets in GitHub Actions secrets." >&2
             exit 1
-          fi
-
-          if [[ -z "${{ steps.target.outputs.port }}" ]]; then
-            echo "port=22" >> "$GITHUB_ENV"
-          else
-            echo "port=${{ steps.target.outputs.port }}" >> "$GITHUB_ENV"
           fi
 
       - name: Start SSH agent
         uses: webfactory/ssh-agent@v0.9.0
         with:
-          ssh-private-key: ${{ steps.target.outputs.ssh_key }}
+          ssh-private-key: ${{ github.ref_name == 'production' && secrets.PROD_SSH_KEY || secrets.STAGE_SSH_KEY }}
 
       - name: Add server to known hosts
         shell: bash
         run: |
           mkdir -p ~/.ssh
-          ssh-keyscan -p "${{ env.port }}" -H "${{ steps.target.outputs.host }}" >> ~/.ssh/known_hosts
+          ssh-keyscan -p "$DEPLOY_PORT" -H "$DEPLOY_HOST" >> ~/.ssh/known_hosts
 
       - name: Ensure target directory exists
         shell: bash
         run: |
-          ssh -p "${{ env.port }}" "${{ steps.target.outputs.user }}@${{ steps.target.outputs.host }}" "mkdir -p '${{ steps.target.outputs.path }}'"
+          ssh -p "$DEPLOY_PORT" "$DEPLOY_USER@$DEPLOY_HOST" "mkdir -p '$DEPLOY_PATH'"
 
       - name: Sync files to server
         shell: bash
@@ -86,15 +80,15 @@ jobs:
             --exclude '.env' \
             --exclude 'vendor/' \
             --exclude '.DS_Store' \
-            -e "ssh -p ${{ env.port }}" \
-            ./ "${{ steps.target.outputs.user }}@${{ steps.target.outputs.host }}:${{ steps.target.outputs.path }}/"
+            -e "ssh -p $DEPLOY_PORT" \
+            ./ "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/"
 
       - name: Install dependencies and validate on server
         shell: bash
         run: |
-          ssh -p "${{ env.port }}" "${{ steps.target.outputs.user }}@${{ steps.target.outputs.host }}" "
+          ssh -p "$DEPLOY_PORT" "$DEPLOY_USER@$DEPLOY_HOST" "
             set -e
-            cd '${{ steps.target.outputs.path }}'
+            cd '$DEPLOY_PATH'
 
             if [ ! -f .env ]; then
               cp .env.example .env
@@ -113,6 +107,6 @@ jobs:
       - name: Deployment summary
         run: |
           echo "Deployment completed for ${GITHUB_REF_NAME}."
-          echo "Target: ${{ steps.target.outputs.env_name }}"
-          echo "Host: ${{ steps.target.outputs.host }}"
-          echo "Path: ${{ steps.target.outputs.path }}"
+          echo "Target: $DEPLOY_ENV"
+          echo "Host: $DEPLOY_HOST"
+          echo "Path: $DEPLOY_PATH"
