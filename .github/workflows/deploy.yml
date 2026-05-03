@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - production
-      - staging
+      # - staging
   workflow_dispatch:
 
 concurrency:
