@@ -7,7 +7,49 @@ function e(string $value): string
 
 function app_url(string $path = ''): string
 {
-    return $path;
+    return absolute_url($path);
+}
+
+function site_base_url(): string
+{
+    $config = $GLOBALS['config'] ?? [];
+    $baseUrl = trim((string) ($config['site']['base_url'] ?? ''));
+
+    if ($baseUrl !== '') {
+        return rtrim($baseUrl, '/');
+    }
+
+    $host = (string) ($_SERVER['HTTP_HOST'] ?? '');
+    if ($host === '') {
+        return '';
+    }
+
+    $https = (string) ($_SERVER['HTTPS'] ?? '');
+    $forwardedProto = (string) ($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '');
+    $isSecure = $https === 'on' || $https === '1' || strtolower($forwardedProto) === 'https';
+    $scheme = $isSecure ? 'https' : 'http';
+
+    return $scheme . '://' . $host;
+}
+
+function absolute_url(string $path = ''): string
+{
+    if ($path === '') {
+        return site_base_url() !== '' ? site_base_url() . '/' : '/';
+    }
+
+    if (preg_match('/^https?:\/\//i', $path) === 1) {
+        return $path;
+    }
+
+    $normalizedPath = '/' . ltrim($path, '/');
+    $baseUrl = site_base_url();
+
+    if ($baseUrl === '') {
+        return $normalizedPath;
+    }
+
+    return $baseUrl . $normalizedPath;
 }
 
 function nav_items(): array

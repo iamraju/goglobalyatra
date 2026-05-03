@@ -3,6 +3,8 @@ require __DIR__ . '/includes/bootstrap.php';
 
 $pageTitle = 'Inbound Packages | ' . $config['site']['name'];
 $metaDescription = 'Inbound Nepal travel packages for international tourists including culture, nature, and adventure experiences.';
+$pagePath = '/inbound-packages.php';
+$ogImage = 'assets/images/nepal-inbound.jpg';
 $currentPage = 'inbound';
 $heroTitle = 'Inbound Packages';
 $heroSubtitle = 'Nepal experiences for international tourists with authentic local support.';

@@ -3,6 +3,8 @@ require __DIR__ . '/includes/bootstrap.php';
 
 $pageTitle = $config['site']['name'] . ' | ' . $config['site']['tagline'];
 $metaDescription = 'Goglobal Yatra offers outbound tours from Nepal and inbound Nepal travel packages for international tourists.';
+$pagePath = '/';
+$ogImage = 'assets/images/europe.jpg';
 $currentPage = 'home';
 $banners = active_banners($config);
 $popularPackages = active_packages($config, null, true);

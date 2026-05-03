@@ -51,6 +51,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $pageTitle = 'Contact Us | ' . $config['site']['name'];
 $metaDescription = 'Contact Goglobal Yatra for inbound Nepal and outbound international travel packages and booking support.';
+$pagePath = '/contact.php';
+$ogImage = 'assets/images/goglobal-yatra-logo.png';
 $currentPage = 'contact';
 $heroTitle = 'Contact Us';
 $heroSubtitle = 'Reach out to plan your next inbound or outbound journey.';

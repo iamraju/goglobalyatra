@@ -65,6 +65,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $pageTitle = 'Book Package | ' . $config['site']['name'];
 $metaDescription = 'Book your inbound or outbound travel package with Goglobal Yatra using our secure booking request form.';
+$pagePath = '/booking.php';
+$metaRobots = 'noindex, follow';
+$ogImage = 'assets/images/goglobal-yatra-logo.png';
 $currentPage = '';
 $heroTitle = 'Booking Form';
 $heroSubtitle = 'Send your travel booking request and our team will contact you quickly.';

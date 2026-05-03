@@ -3,6 +3,9 @@ require __DIR__ . '/includes/bootstrap.php';
 
 $pageTitle = 'About Us | ' . $config['site']['name'];
 $metaDescription = 'Learn about Goglobal Yatra, a Nepal-based travel company offering inbound and outbound holiday packages.';
+$pagePath = '/about.php';
+$ogType = 'article';
+$ogImage = 'assets/images/about-nepal.jpg';
 $currentPage = 'about';
 $heroTitle = 'About Us';
 $heroSubtitle = 'Your trusted travel partner connecting Nepal to the world and the world to Nepal.';

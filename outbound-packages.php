@@ -3,6 +3,8 @@ require __DIR__ . '/includes/bootstrap.php';
 
 $pageTitle = 'Outbound Packages | ' . $config['site']['name'];
 $metaDescription = 'Discover outbound travel packages from Nepal to Europe, Thailand, Bali, Malaysia, Dubai, Singapore, Vietnam, Sri Lanka, and Maldives.';
+$pagePath = '/outbound-packages.php';
+$ogImage = 'assets/images/china.jpg';
 $currentPage = 'outbound';
 $heroTitle = 'Outbound Packages';
 $heroSubtitle = 'International tours for Nepali travelers with complete booking support.';
