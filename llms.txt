@@ -7,14 +7,19 @@ Discover outbound travel packages from Nepal to Europe, Thailand, Bali, Malaysia
 - Flexible packages for families, groups, and corporate travelers
 - Responsive support before, during, and after your trip
 
-## Top Tour Packages
+## Top Outbound Tour Packages
 - [Europe Tour](https://goglobalyatra.com/package-details.php?package=europe-tour) - 9 days, $0.
 - [Thailand Tour](https://goglobalyatra.com/package-details.php?package=thailand-tour) - 6 days, $0
 - [Bali Tour](https://goglobalyatra.com/package-details.php?package=bali-tour) - 5 days, $0.
 - [Malaysia Tour](https://goglobalyatra.com/package-details.php?package=malaysia-tour) - 5 days, $0
-- [Dubai Tour](https://goglobalyatra.com/package-details.php?package=dubai-tour) - 8 nights / 9 days, $0.
-- [China Tour](https://goglobalyatra.com/package-details.php?package=china-tour) - 5 nights / 6 days, $0
-- [Singapore Tour](https://goglobalyatra.com/package-details.php?package=singapore-tour) - 8 nights / 9 days, $0.
-- [Vietnam Tour](https://goglobalyatra.com/package-details.php?package=vietnam-tour) - 5 nights / 6 days, $0
-- [Sri Lanka Tour](https://goglobalyatra.com/package-details.php?package=sri-lanka-tour) - 5 nights / 6 days, $0
-- [Maldivs Tour](https://goglobalyatra.com/package-details.php?package=maldivs-tour) - 5 nights / 6 days, $0
+- [Dubai Tour](https://goglobalyatra.com/package-details.php?package=dubai-tour) - 6 days, $0.
+- [China Tour](https://goglobalyatra.com/package-details.php?package=china-tour) - 7 days, $0
+- [Singapore Tour](https://goglobalyatra.com/package-details.php?package=singapore-tour) - 5 days, $0.
+- [Vietnam Tour](https://goglobalyatra.com/package-details.php?package=vietnam-tour) - 7 days, $0
+- [Sri Lanka Tour](https://goglobalyatra.com/package-details.php?package=sri-lanka-tour) - 6 days, $0
+- [Maldivs Tour](https://goglobalyatra.com/package-details.php?package=maldivs-tour) - 5 days, $0
+
+## Our Inbound Top Packages
+- [Kathmandu and Pokhara Highlights](https://goglobalyatra.com/package-details.php?package=kathmandu-pokhara-highlights) - 6 nights / 6 days, $0
+- [Nepal Culture and Heritage Tour](https://goglobalyatra.com/package-details.php?package=nepal-culture-heritage-tour) - 7 nights / 6 days, $0
+- [Scenic Nepal Retreat](https://goglobalyatra.com/package-details.php?package=scenic-nepal-retreat) - 8 days, $0
