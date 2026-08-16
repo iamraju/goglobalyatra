@@ -23,7 +23,8 @@
         <li><strong>Company:</strong> <?= e($config['site']['name']) ?></li>
         <li><strong>Address:</strong> <?= e($config['site']['address']) ?></li>
         <li><strong>Email:</strong> <?= e($config['site']['topbar_email']) ?></li>
-        <li><strong>Phone:</strong> <?= e($config['site']['topbar_phone']) ?></li>
+        <li><strong>Mobile:</strong> <?= e($config['site']['topbar_phone']) ?></li>
+        <li><strong>Landline:</strong> <?= e($config['site']['topbar_landline']) ?></li>
       </ul>
     </section>
   </div>
