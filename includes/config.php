@@ -272,9 +272,9 @@ return [
             'duration' => '7 nights / 8 days',
             'short_description' => '2 nights Pattaya with coral island tour with lunch and 2 nights Bangkok with city tour. 2 nights in Bentota with sight seeing and 1 night in Colombo with sight seeing.',
             'image_url' => 'assets/images/thailand.jpg',
-            'type' => 'inbound',
+            'type' => 'outbound',
             'status' => 1,
-            'is_popular' => true,
+            'is_popular' => false,
         ],
     ],
 ];
