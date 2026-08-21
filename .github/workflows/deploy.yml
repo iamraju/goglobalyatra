@@ -74,13 +74,14 @@ jobs:
         run: |
           ssh -p "$DEPLOY_PORT" "$DEPLOY_USER@$DEPLOY_HOST" "mkdir -p '$DEPLOY_PATH'"
 
-      # IMPORTANT: this only syncs wp-content/ (themes, plugins, mu-plugins).
-      # WordPress core (wp-admin/, wp-includes/, wp-*.php, index.php, wp-config.php)
-      # is intentionally NOT touched here — it's managed on the server via wp-cli
-      # (wp core update / wp plugin update from the .org repo), matching .gitignore.
-      # Syncing the whole repo root with --delete would wipe those files since
-      # they don't exist in this git checkout.
-      - name: Sync wp-content to server
+      # DEPLOY_USER must be the actual file owner (e.g. eppweb), so synced
+      # files land with correct ownership and no sudo/chown is ever needed.
+      #
+      # --delete is scoped to what's in this repo. wp-config.php, uploads/,
+      # upgrade/, cache/, and node_modules/dist are excluded so rsync never
+      # deletes them even though they don't exist in the git checkout —
+      # they're server-only and persist across deploys.
+      - name: Sync files to server
         shell: bash
         run: |
           rsync -az --delete \
@@ -89,6 +90,7 @@ jobs:
             --exclude '.env' \
             --exclude '.DS_Store' \
             --exclude 'node_modules/' \
+            --exclude 'wp-config.php' \
             --exclude 'wp-content/uploads/' \
             --exclude 'wp-content/upgrade/' \
             --exclude 'wp-content/cache/' \
@@ -96,20 +98,46 @@ jobs:
             --exclude '*/assets/dist/' \
             --exclude 'router.php' \
             -e "ssh -p $DEPLOY_PORT" \
-            ./wp-content/ "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/wp-content/"
+            ./ "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/"
 
-      # DEPLOY_USER must be the actual owner of the document root (e.g. eppweb),
-      # not just any SSH user — that way rsync-written files already have the
-      # correct owner and no sudo/chown step is needed (sudo can't prompt for
-      # a password in a non-interactive CI SSH session, which is what failed
-      # here previously).
+      # Only creates wp-config.php if it's genuinely missing (fresh site).
+      # On existing sites this is a no-op — it never overwrites a live config.
+      - name: Ensure wp-config.php exists
+        shell: bash
+        run: |
+          ssh -p "$DEPLOY_PORT" "$DEPLOY_USER@$DEPLOY_HOST" "
+            set -e
+            cd '$DEPLOY_PATH'
+            if [ ! -f wp-config.php ]; then
+              wp config create \
+                --dbname='${{ secrets.DEPLOY_DB_NAME }}' \
+                --dbuser='${{ secrets.DEPLOY_DB_USER }}' \
+                --dbpass='${{ secrets.DEPLOY_DB_PASS }}' \
+                --dbhost='${{ secrets.DEPLOY_DB_HOST }}' \
+                --skip-check
+              echo 'wp-config.php created — new site, verify DB connection manually.'
+            fi
+          "
+
       - name: Validate PHP syntax on server
         shell: bash
         run: |
           ssh -p "$DEPLOY_PORT" "$DEPLOY_USER@$DEPLOY_HOST" "
             set -e
             cd '$DEPLOY_PATH'
-            find wp-content -name '*.php' -print0 | xargs -0 -n1 php -l
+            find wp-content -name '*.php' -not -path '*/node_modules/*' -print0 | xargs -0 -n1 php -l
+          "
+
+      # Clears cache and permalink rules so newly-deployed code takes effect.
+      # Does not require sudo, so it runs safely in this non-interactive shell.
+      - name: Flush caches
+        shell: bash
+        run: |
+          ssh -p "$DEPLOY_PORT" "$DEPLOY_USER@$DEPLOY_HOST" "
+            set -e
+            cd '$DEPLOY_PATH'
+            wp cache flush || true
+            wp rewrite flush --hard || true
           "
 
       - name: Deployment summary

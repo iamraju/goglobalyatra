@@ -1,18 +1,11 @@
 .DS_Store
 .env
-vendor/
+# vendor/
 
-# WordPress core (not versioned; managed via wp-cli / composer)
-/wp-admin/
-/wp-includes/
-/wp-*.php
-!/wp-content/
-index.php
-license.txt
-readme.html
+# Server-specific config — contains DB credentials, never commit
 wp-config.php
 
-# Uploads & caches
+# Uploads & caches (server-only, never versioned)
 /wp-content/uploads/
 /wp-content/upgrade/
 /wp-content/cache/
