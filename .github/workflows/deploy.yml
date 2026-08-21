@@ -98,22 +98,17 @@ jobs:
             -e "ssh -p $DEPLOY_PORT" \
             ./wp-content/ "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/wp-content/"
 
-      - name: Fix ownership and validate PHP syntax on server
+      # DEPLOY_USER must be the actual owner of the document root (e.g. eppweb),
+      # not just any SSH user — that way rsync-written files already have the
+      # correct owner and no sudo/chown step is needed (sudo can't prompt for
+      # a password in a non-interactive CI SSH session, which is what failed
+      # here previously).
+      - name: Validate PHP syntax on server
         shell: bash
         run: |
           ssh -p "$DEPLOY_PORT" "$DEPLOY_USER@$DEPLOY_HOST" "
             set -e
             cd '$DEPLOY_PATH'
-
-            # Adjust WEB_USER to whatever owns your document root
-            # (confirm with: ls -la $DEPLOY_PATH)
-            WEB_USER=\${DEPLOY_WEB_USER:-www-data}
-            if id -u \"\$WEB_USER\" >/dev/null 2>&1; then
-              sudo chown -R \"\$WEB_USER\":\"\$WEB_USER\" wp-content
-            fi
-
-            # Syntax-check every PHP file that was just deployed instead of a
-            # single index.php (which isn't part of this repo/deploy)
             find wp-content -name '*.php' -print0 | xargs -0 -n1 php -l
           "
 
