@@ -1,4 +1,4 @@
-name: Deploy PHP Site
+name: Deploy WordPress Site
 
 on:
   push:
@@ -74,37 +74,47 @@ jobs:
         run: |
           ssh -p "$DEPLOY_PORT" "$DEPLOY_USER@$DEPLOY_HOST" "mkdir -p '$DEPLOY_PATH'"
 
-      - name: Sync files to server
+      # IMPORTANT: this only syncs wp-content/ (themes, plugins, mu-plugins).
+      # WordPress core (wp-admin/, wp-includes/, wp-*.php, index.php, wp-config.php)
+      # is intentionally NOT touched here — it's managed on the server via wp-cli
+      # (wp core update / wp plugin update from the .org repo), matching .gitignore.
+      # Syncing the whole repo root with --delete would wipe those files since
+      # they don't exist in this git checkout.
+      - name: Sync wp-content to server
         shell: bash
         run: |
           rsync -az --delete \
             --exclude '.git/' \
             --exclude '.github/' \
             --exclude '.env' \
-            --exclude 'vendor/' \
             --exclude '.DS_Store' \
+            --exclude 'node_modules/' \
+            --exclude 'wp-content/uploads/' \
+            --exclude 'wp-content/upgrade/' \
+            --exclude 'wp-content/cache/' \
+            --exclude '*/node_modules/' \
+            --exclude '*/assets/dist/' \
+            --exclude 'router.php' \
             -e "ssh -p $DEPLOY_PORT" \
-            ./ "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/"
+            ./wp-content/ "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/wp-content/"
 
-      - name: Install dependencies and validate on server
+      - name: Fix ownership and validate PHP syntax on server
         shell: bash
         run: |
           ssh -p "$DEPLOY_PORT" "$DEPLOY_USER@$DEPLOY_HOST" "
             set -e
             cd '$DEPLOY_PATH'
 
-            if [ ! -f .env ]; then
-              cp .env.example .env
-              echo '.env was created from .env.example. Update it on server.'
+            # Adjust WEB_USER to whatever owns your document root
+            # (confirm with: ls -la $DEPLOY_PATH)
+            WEB_USER=\${DEPLOY_WEB_USER:-www-data}
+            if id -u \"\$WEB_USER\" >/dev/null 2>&1; then
+              sudo chown -R \"\$WEB_USER\":\"\$WEB_USER\" wp-content
             fi
 
-            if ! command -v composer >/dev/null 2>&1; then
-              echo 'composer is not installed on server.' >&2
-              exit 1
-            fi
-
-            composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction
-            php -l index.php >/dev/null
+            # Syntax-check every PHP file that was just deployed instead of a
+            # single index.php (which isn't part of this repo/deploy)
+            find wp-content -name '*.php' -print0 | xargs -0 -n1 php -l
           "
 
       - name: Deployment summary

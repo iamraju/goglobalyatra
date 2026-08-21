@@ -1,4 +1,25 @@
 .DS_Store
 .env
-
 vendor/
+
+# WordPress core (not versioned; managed via wp-cli / composer)
+/wp-admin/
+/wp-includes/
+/wp-*.php
+!/wp-content/
+index.php
+license.txt
+readme.html
+wp-config.php
+
+# Uploads & caches
+/wp-content/uploads/
+/wp-content/upgrade/
+/wp-content/cache/
+
+# Theme build artifacts
+/wp-content/themes/goglobalyatra/node_modules/
+/wp-content/themes/goglobalyatra/assets/dist/
+
+# Local test router
+router.php

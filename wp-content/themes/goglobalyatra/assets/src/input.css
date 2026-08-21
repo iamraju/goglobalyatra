@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gy-blue-900: #0b2f64;
+  --gy-blue-700: #1456a0;
+  --gy-blue-500: #2e7ed8;
+  --gy-blue-100: #e8f1fc;
+  --gy-ink: #16324f;
+  --gy-warm: #f7fbff;
+}
+
+html,
+body {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Poppins", "Segoe UI", sans-serif;
+  color: var(--gy-ink);
+  background: linear-gradient(180deg, #f8fbff 0%, #ffffff 45%, #f2f8ff 100%);
+}
+
+@layer components {
+  .custom-logo-link img {
+    height: 3rem;
+    width: auto;
+  }
+
+  footer .custom-logo-link img {
+    height: 3rem;
+    background: #fff;
+    border-radius: 0.25rem;
+    padding: 0.25rem;
+  }
+
+  .brand-gradient {
+    background: linear-gradient(
+      120deg,
+      var(--gy-blue-900) 0%,
+      var(--gy-blue-700) 45%,
+      var(--gy-blue-500) 100%
+    );
+  }
+
+  .page-hero {
+    background:
+      radial-gradient(
+        circle at 80% 20%,
+        rgba(255, 255, 255, 0.22) 0,
+        rgba(255, 255, 255, 0) 40%
+      ),
+      linear-gradient(110deg, #0b2f64 5%, #1456a0 55%, #2e7ed8 100%);
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(8px);
+  }
+
+  .banner-slide {
+    min-height: 460px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .banner-overlay {
+    background: linear-gradient(
+      100deg,
+      rgba(11, 47, 100, 0.88),
+      rgba(11, 47, 100, 0.38),
+      rgba(46, 126, 216, 0.16)
+    );
+  }
+
+  .package-card img {
+    transition: transform 0.35s ease;
+  }
+
+  .package-card:hover img {
+    transform: scale(1.05);
+  }
+
+  .reveal-up {
+    animation: revealUp 0.6s ease both;
+  }
+}
+
+@keyframes revealUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+textarea {
+  resize: vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(46, 126, 216, 0.2);
+}
+
+@media (max-width: 768px) {
+  .banner-slide {
+    min-height: 380px;
+  }
+}
