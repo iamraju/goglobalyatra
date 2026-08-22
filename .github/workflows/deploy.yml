@@ -95,7 +95,6 @@ jobs:
             --exclude 'wp-content/upgrade/' \
             --exclude 'wp-content/cache/' \
             --exclude '*/node_modules/' \
-            --exclude '*/assets/dist/' \
             --exclude 'router.php' \
             -e "ssh -p $DEPLOY_PORT" \
             ./ "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/"

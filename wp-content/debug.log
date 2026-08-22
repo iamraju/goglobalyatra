@@ -10549,3 +10549,208 @@ Stack trace:
 [21-Aug-2026 02:35:24 UTC] PHP Deprecated:  Using null as an array offset is deprecated, use an empty string instead in phar:///usr/local/bin/wp/vendor/wp-cli/php-cli-tools/lib/cli/Colors.php on line 95
 [21-Aug-2026 02:35:24 UTC] PHP Deprecated:  Using null as an array offset is deprecated, use an empty string instead in phar:///usr/local/bin/wp/vendor/wp-cli/php-cli-tools/lib/cli/Colors.php on line 95
 [21-Aug-2026 02:35:24 UTC] PHP Deprecated:  Using null as an array offset is deprecated, use an empty string instead in phar:///usr/local/bin/wp/vendor/wp-cli/php-cli-tools/lib/cli/Colors.php on line 95
+[21-Aug-2026 12:59:29 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_field() in /Users/raju/www/goglobalyatra/wp-content/themes/goglobalyatra/template-parts/package-card.php:8
+Stack trace:
+#0 /Users/raju/www/goglobalyatra/wp-includes/template.php(816): require()
+#1 /Users/raju/www/goglobalyatra/wp-includes/template.php(749): load_template('/Users/raju/www...', false, Array)
+#2 /Users/raju/www/goglobalyatra/wp-includes/general-template.php(206): locate_template(Array, true, false, Array)
+#3 /Users/raju/www/goglobalyatra/wp-content/themes/goglobalyatra/front-page.php(149): get_template_part('template-parts/...')
+#4 /Users/raju/www/goglobalyatra/wp-includes/template-loader.php(132): include('/Users/raju/www...')
+#5 /Users/raju/www/goglobalyatra/wp-blog-header.php(19): require_once('/Users/raju/www...')
+#6 /Users/raju/www/goglobalyatra/index.php(17): require('/Users/raju/www...')
+#7 /Users/raju/www/goglobalyatra/router.php(22): require('/Users/raju/www...')
+#8 {main}
+  thrown in /Users/raju/www/goglobalyatra/wp-content/themes/goglobalyatra/template-parts/package-card.php on line 8
+[21-Aug-2026 12:59:31 UTC] Automatic updates starting...
+[21-Aug-2026 12:59:34 UTC]   Automatic theme updates starting...
+[21-Aug-2026 12:59:34 UTC]   Automatic theme updates complete.
+[21-Aug-2026 12:59:34 UTC] Automatic updates complete.
+[21-Aug-2026 12:59:47 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_field() in /Users/raju/www/goglobalyatra/wp-content/themes/goglobalyatra/template-parts/package-card.php:8
+Stack trace:
+#0 /Users/raju/www/goglobalyatra/wp-includes/template.php(816): require()
+#1 /Users/raju/www/goglobalyatra/wp-includes/template.php(749): load_template('/Users/raju/www...', false, Array)
+#2 /Users/raju/www/goglobalyatra/wp-includes/general-template.php(206): locate_template(Array, true, false, Array)
+#3 /Users/raju/www/goglobalyatra/wp-content/themes/goglobalyatra/front-page.php(149): get_template_part('template-parts/...')
+#4 /Users/raju/www/goglobalyatra/wp-includes/template-loader.php(132): include('/Users/raju/www...')
+#5 /Users/raju/www/goglobalyatra/wp-blog-header.php(19): require_once('/Users/raju/www...')
+#6 /Users/raju/www/goglobalyatra/index.php(17): require('/Users/raju/www...')
+#7 /Users/raju/www/goglobalyatra/router.php(22): require('/Users/raju/www...')
+#8 {main}
+  thrown in /Users/raju/www/goglobalyatra/wp-content/themes/goglobalyatra/template-parts/package-card.php on line 8
+[21-Aug-2026 13:06:07 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_field() in /Users/raju/www/goglobalyatra/wp-content/themes/goglobalyatra/template-parts/package-card.php:8
+Stack trace:
+#0 /Users/raju/www/goglobalyatra/wp-includes/template.php(816): require()
+#1 /Users/raju/www/goglobalyatra/wp-includes/template.php(749): load_template('/Users/raju/www...', false, Array)
+#2 /Users/raju/www/goglobalyatra/wp-includes/general-template.php(206): locate_template(Array, true, false, Array)
+#3 /Users/raju/www/goglobalyatra/wp-content/themes/goglobalyatra/front-page.php(149): get_template_part('template-parts/...')
+#4 /Users/raju/www/goglobalyatra/wp-includes/template-loader.php(132): include('/Users/raju/www...')
+#5 /Users/raju/www/goglobalyatra/wp-blog-header.php(19): require_once('/Users/raju/www...')
+#6 /Users/raju/www/goglobalyatra/index.php(17): require('/Users/raju/www...')
+#7 /Users/raju/www/goglobalyatra/router.php(22): require('/Users/raju/www...')
+#8 {main}
+  thrown in /Users/raju/www/goglobalyatra/wp-content/themes/goglobalyatra/template-parts/package-card.php on line 8
+[21-Aug-2026 13:06:09 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_field() in /Users/raju/www/goglobalyatra/wp-content/themes/goglobalyatra/template-parts/package-card.php:8
+Stack trace:
+#0 /Users/raju/www/goglobalyatra/wp-includes/template.php(816): require()
+#1 /Users/raju/www/goglobalyatra/wp-includes/template.php(749): load_template('/Users/raju/www...', false, Array)
+#2 /Users/raju/www/goglobalyatra/wp-includes/general-template.php(206): locate_template(Array, true, false, Array)
+#3 /Users/raju/www/goglobalyatra/wp-content/themes/goglobalyatra/front-page.php(149): get_template_part('template-parts/...')
+#4 /Users/raju/www/goglobalyatra/wp-includes/template-loader.php(132): include('/Users/raju/www...')
+#5 /Users/raju/www/goglobalyatra/wp-blog-header.php(19): require_once('/Users/raju/www...')
+#6 /Users/raju/www/goglobalyatra/index.php(17): require('/Users/raju/www...')
+#7 /Users/raju/www/goglobalyatra/router.php(22): require('/Users/raju/www...')
+#8 {main}
+  thrown in /Users/raju/www/goglobalyatra/wp-content/themes/goglobalyatra/template-parts/package-card.php on line 8
+[21-Aug-2026 13:08:26 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_field() in /Users/raju/www/goglobalyatra/wp-content/themes/goglobalyatra/template-parts/package-card.php:8
+Stack trace:
+#0 /Users/raju/www/goglobalyatra/wp-includes/template.php(816): require()
+#1 /Users/raju/www/goglobalyatra/wp-includes/template.php(749): load_template('/Users/raju/www...', false, Array)
+#2 /Users/raju/www/goglobalyatra/wp-includes/general-template.php(206): locate_template(Array, true, false, Array)
+#3 /Users/raju/www/goglobalyatra/wp-content/themes/goglobalyatra/front-page.php(149): get_template_part('template-parts/...')
+#4 /Users/raju/www/goglobalyatra/wp-includes/template-loader.php(132): include('/Users/raju/www...')
+#5 /Users/raju/www/goglobalyatra/wp-blog-header.php(19): require_once('/Users/raju/www...')
+#6 /Users/raju/www/goglobalyatra/index.php(17): require('/Users/raju/www...')
+#7 /Users/raju/www/goglobalyatra/router.php(22): require('/Users/raju/www...')
+#8 {main}
+  thrown in /Users/raju/www/goglobalyatra/wp-content/themes/goglobalyatra/template-parts/package-card.php on line 8
+[21-Aug-2026 13:08:26 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_field() in /Users/raju/www/goglobalyatra/wp-content/themes/goglobalyatra/template-parts/package-card.php:8
+Stack trace:
+#0 /Users/raju/www/goglobalyatra/wp-includes/template.php(816): require()
+#1 /Users/raju/www/goglobalyatra/wp-includes/template.php(749): load_template('/Users/raju/www...', false, Array)
+#2 /Users/raju/www/goglobalyatra/wp-includes/general-template.php(206): locate_template(Array, true, false, Array)
+#3 /Users/raju/www/goglobalyatra/wp-content/themes/goglobalyatra/front-page.php(149): get_template_part('template-parts/...')
+#4 /Users/raju/www/goglobalyatra/wp-includes/template-loader.php(132): include('/Users/raju/www...')
+#5 /Users/raju/www/goglobalyatra/wp-blog-header.php(19): require_once('/Users/raju/www...')
+#6 /Users/raju/www/goglobalyatra/index.php(17): require('/Users/raju/www...')
+#7 /Users/raju/www/goglobalyatra/router.php(22): require('/Users/raju/www...')
+#8 {main}
+  thrown in /Users/raju/www/goglobalyatra/wp-content/themes/goglobalyatra/template-parts/package-card.php on line 8
+[21-Aug-2026 13:08:43 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_field() in /Users/raju/www/goglobalyatra/wp-content/themes/goglobalyatra/inc/cpt-travel.php:74
+Stack trace:
+#0 /Users/raju/www/goglobalyatra/wp-includes/class-wp-hook.php(353): {closure:/Users/raju/www/goglobalyatra/wp-content/themes/goglobalyatra/inc/cpt-travel.php:72}('is_popular', 49)
+#1 /Users/raju/www/goglobalyatra/wp-includes/class-wp-hook.php(377): WP_Hook->apply_filters('', Array)
+#2 /Users/raju/www/goglobalyatra/wp-includes/plugin.php(523): WP_Hook->do_action(Array)
+#3 /Users/raju/www/goglobalyatra/wp-admin/includes/class-wp-posts-list-table.php(1508): do_action('manage_travel_p...', 'is_popular', 49)
+#4 /Users/raju/www/goglobalyatra/wp-admin/includes/class-wp-list-table.php(1854): WP_Posts_List_Table->column_default(Object(WP_Post), 'is_popular')
+#5 /Users/raju/www/goglobalyatra/wp-admin/includes/class-wp-posts-list-table.php(1542): WP_List_Table->single_row_columns(Object(WP_Post))
+#6 /Users/raju/www/goglobalyatra/wp-admin/includes/class-wp-posts-list-table.php(838): WP_Posts_List_Table->single_row(Object(WP_Post), 0)
+#7 /Users/raju/www/goglobalyatra/wp-admin/includes/class-wp-posts-list-table.php(814): WP_Posts_List_Table->_display_rows(Array, 0)
+#8 /Users/raju/www/goglobalyatra/wp-admin/includes/class-wp-list-table.php(1725): WP_Posts_List_Table->display_rows()
+#9 /Users/raju/www/goglobalyatra/wp-admin/includes/class-wp-list-table.php(1644): WP_List_Table->display_rows_or_placeholder()
+#10 /Users/raju/www/goglobalyatra/wp-admin/edit.php(503): WP_List_Table->display()
+#11 {main}
+  thrown in /Users/raju/www/goglobalyatra/wp-content/themes/goglobalyatra/inc/cpt-travel.php on line 74
+[21-Aug-2026 13:08:52 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_field() in /Users/raju/www/goglobalyatra/wp-content/themes/goglobalyatra/inc/cpt-travel.php:74
+Stack trace:
+#0 /Users/raju/www/goglobalyatra/wp-includes/class-wp-hook.php(353): {closure:/Users/raju/www/goglobalyatra/wp-content/themes/goglobalyatra/inc/cpt-travel.php:72}('is_popular', 49)
+#1 /Users/raju/www/goglobalyatra/wp-includes/class-wp-hook.php(377): WP_Hook->apply_filters('', Array)
+#2 /Users/raju/www/goglobalyatra/wp-includes/plugin.php(523): WP_Hook->do_action(Array)
+#3 /Users/raju/www/goglobalyatra/wp-admin/includes/class-wp-posts-list-table.php(1508): do_action('manage_travel_p...', 'is_popular', 49)
+#4 /Users/raju/www/goglobalyatra/wp-admin/includes/class-wp-list-table.php(1854): WP_Posts_List_Table->column_default(Object(WP_Post), 'is_popular')
+#5 /Users/raju/www/goglobalyatra/wp-admin/includes/class-wp-posts-list-table.php(1542): WP_List_Table->single_row_columns(Object(WP_Post))
+#6 /Users/raju/www/goglobalyatra/wp-admin/includes/class-wp-posts-list-table.php(838): WP_Posts_List_Table->single_row(Object(WP_Post), 0)
+#7 /Users/raju/www/goglobalyatra/wp-admin/includes/class-wp-posts-list-table.php(814): WP_Posts_List_Table->_display_rows(Array, 0)
+#8 /Users/raju/www/goglobalyatra/wp-admin/includes/class-wp-list-table.php(1725): WP_Posts_List_Table->display_rows()
+#9 /Users/raju/www/goglobalyatra/wp-admin/includes/class-wp-list-table.php(1644): WP_List_Table->display_rows_or_placeholder()
+#10 /Users/raju/www/goglobalyatra/wp-admin/edit.php(503): WP_List_Table->display()
+#11 {main}
+  thrown in /Users/raju/www/goglobalyatra/wp-content/themes/goglobalyatra/inc/cpt-travel.php on line 74
+[21-Aug-2026 13:08:54 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_field() in /Users/raju/www/goglobalyatra/wp-content/themes/goglobalyatra/inc/cpt-testimonial.php:161
+Stack trace:
+#0 /Users/raju/www/goglobalyatra/wp-includes/class-wp-hook.php(353): {closure:/Users/raju/www/goglobalyatra/wp-content/themes/goglobalyatra/inc/cpt-testimonial.php:156}('rating', 59)
+#1 /Users/raju/www/goglobalyatra/wp-includes/class-wp-hook.php(377): WP_Hook->apply_filters('', Array)
+#2 /Users/raju/www/goglobalyatra/wp-includes/plugin.php(523): WP_Hook->do_action(Array)
+#3 /Users/raju/www/goglobalyatra/wp-admin/includes/class-wp-posts-list-table.php(1508): do_action('manage_testimon...', 'rating', 59)
+#4 /Users/raju/www/goglobalyatra/wp-admin/includes/class-wp-list-table.php(1854): WP_Posts_List_Table->column_default(Object(WP_Post), 'rating')
+#5 /Users/raju/www/goglobalyatra/wp-admin/includes/class-wp-posts-list-table.php(1542): WP_List_Table->single_row_columns(Object(WP_Post))
+#6 /Users/raju/www/goglobalyatra/wp-admin/includes/class-wp-posts-list-table.php(838): WP_Posts_List_Table->single_row(Object(WP_Post), 0)
+#7 /Users/raju/www/goglobalyatra/wp-admin/includes/class-wp-posts-list-table.php(814): WP_Posts_List_Table->_display_rows(Array, 0)
+#8 /Users/raju/www/goglobalyatra/wp-admin/includes/class-wp-list-table.php(1725): WP_Posts_List_Table->display_rows()
+#9 /Users/raju/www/goglobalyatra/wp-admin/includes/class-wp-list-table.php(1644): WP_List_Table->display_rows_or_placeholder()
+#10 /Users/raju/www/goglobalyatra/wp-admin/edit.php(503): WP_List_Table->display()
+#11 {main}
+  thrown in /Users/raju/www/goglobalyatra/wp-content/themes/goglobalyatra/inc/cpt-testimonial.php on line 161
+[21-Aug-2026 13:08:56 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_field() in /Users/raju/www/goglobalyatra/wp-content/themes/goglobalyatra/inc/cpt-travel.php:74
+Stack trace:
+#0 /Users/raju/www/goglobalyatra/wp-includes/class-wp-hook.php(353): {closure:/Users/raju/www/goglobalyatra/wp-content/themes/goglobalyatra/inc/cpt-travel.php:72}('is_popular', 49)
+#1 /Users/raju/www/goglobalyatra/wp-includes/class-wp-hook.php(377): WP_Hook->apply_filters('', Array)
+#2 /Users/raju/www/goglobalyatra/wp-includes/plugin.php(523): WP_Hook->do_action(Array)
+#3 /Users/raju/www/goglobalyatra/wp-admin/includes/class-wp-posts-list-table.php(1508): do_action('manage_travel_p...', 'is_popular', 49)
+#4 /Users/raju/www/goglobalyatra/wp-admin/includes/class-wp-list-table.php(1854): WP_Posts_List_Table->column_default(Object(WP_Post), 'is_popular')
+#5 /Users/raju/www/goglobalyatra/wp-admin/includes/class-wp-posts-list-table.php(1542): WP_List_Table->single_row_columns(Object(WP_Post))
+#6 /Users/raju/www/goglobalyatra/wp-admin/includes/class-wp-posts-list-table.php(838): WP_Posts_List_Table->single_row(Object(WP_Post), 0)
+#7 /Users/raju/www/goglobalyatra/wp-admin/includes/class-wp-posts-list-table.php(814): WP_Posts_List_Table->_display_rows(Array, 0)
+#8 /Users/raju/www/goglobalyatra/wp-admin/includes/class-wp-list-table.php(1725): WP_Posts_List_Table->display_rows()
+#9 /Users/raju/www/goglobalyatra/wp-admin/includes/class-wp-list-table.php(1644): WP_List_Table->display_rows_or_placeholder()
+#10 /Users/raju/www/goglobalyatra/wp-admin/edit.php(503): WP_List_Table->display()
+#11 {main}
+  thrown in /Users/raju/www/goglobalyatra/wp-content/themes/goglobalyatra/inc/cpt-travel.php on line 74
+[21-Aug-2026 13:11:55 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_field() in /Users/raju/www/goglobalyatra/wp-content/themes/goglobalyatra/inc/cpt-travel.php:74
+Stack trace:
+#0 /Users/raju/www/goglobalyatra/wp-includes/class-wp-hook.php(353): {closure:/Users/raju/www/goglobalyatra/wp-content/themes/goglobalyatra/inc/cpt-travel.php:72}('is_popular', 49)
+#1 /Users/raju/www/goglobalyatra/wp-includes/class-wp-hook.php(377): WP_Hook->apply_filters('', Array)
+#2 /Users/raju/www/goglobalyatra/wp-includes/plugin.php(523): WP_Hook->do_action(Array)
+#3 /Users/raju/www/goglobalyatra/wp-admin/includes/class-wp-posts-list-table.php(1508): do_action('manage_travel_p...', 'is_popular', 49)
+#4 /Users/raju/www/goglobalyatra/wp-admin/includes/class-wp-list-table.php(1854): WP_Posts_List_Table->column_default(Object(WP_Post), 'is_popular')
+#5 /Users/raju/www/goglobalyatra/wp-admin/includes/class-wp-posts-list-table.php(1542): WP_List_Table->single_row_columns(Object(WP_Post))
+#6 /Users/raju/www/goglobalyatra/wp-admin/includes/class-wp-posts-list-table.php(838): WP_Posts_List_Table->single_row(Object(WP_Post), 0)
+#7 /Users/raju/www/goglobalyatra/wp-admin/includes/class-wp-posts-list-table.php(814): WP_Posts_List_Table->_display_rows(Array, 0)
+#8 /Users/raju/www/goglobalyatra/wp-admin/includes/class-wp-list-table.php(1725): WP_Posts_List_Table->display_rows()
+#9 /Users/raju/www/goglobalyatra/wp-admin/includes/class-wp-list-table.php(1644): WP_List_Table->display_rows_or_placeholder()
+#10 /Users/raju/www/goglobalyatra/wp-admin/edit.php(503): WP_List_Table->display()
+#11 {main}
+  thrown in /Users/raju/www/goglobalyatra/wp-content/themes/goglobalyatra/inc/cpt-travel.php on line 74
+[21-Aug-2026 15:03:35 UTC] Automatic updates starting...
+[21-Aug-2026 15:03:38 UTC]   Automatic theme updates starting...
+[21-Aug-2026 15:03:38 UTC]   Automatic theme updates complete.
+[21-Aug-2026 15:03:38 UTC] Automatic updates complete.
+[21-Aug-2026 15:03:39 UTC] PHP Deprecated:  Using null as an array offset is deprecated, use an empty string instead in /Users/raju/www/goglobalyatra/wp-content/plugins/wordpress-seo/src/memoizers/meta-tags-context-memoizer.php on line 135
+[21-Aug-2026 15:03:39 UTC] PHP Deprecated:  Using null as an array offset is deprecated, use an empty string instead in /Users/raju/www/goglobalyatra/wp-content/plugins/wordpress-seo/src/memoizers/presentation-memoizer.php on line 49
+[21-Aug-2026 15:03:39 UTC] PHP Deprecated:  Using null as an array offset is deprecated, use an empty string instead in /Users/raju/www/goglobalyatra/wp-content/plugins/wordpress-seo/src/memoizers/presentation-memoizer.php on line 63
+[21-Aug-2026 15:03:39 UTC] PHP Deprecated:  Using null as an array offset is deprecated, use an empty string instead in /Users/raju/www/goglobalyatra/wp-content/plugins/wordpress-seo/src/memoizers/presentation-memoizer.php on line 66
+[21-Aug-2026 15:03:39 UTC] PHP Deprecated:  Using null as an array offset is deprecated, use an empty string instead in /Users/raju/www/goglobalyatra/wp-content/plugins/wordpress-seo/src/memoizers/meta-tags-context-memoizer.php on line 154
+[21-Aug-2026 15:03:39 UTC] PHP Deprecated:  Using null as an array offset is deprecated, use an empty string instead in /Users/raju/www/goglobalyatra/wp-content/plugins/wordpress-seo/src/memoizers/meta-tags-context-memoizer.php on line 157
+[21-Aug-2026 15:11:46 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_field() in /Users/raju/www/goglobalyatra/wp-content/themes/goglobalyatra/template-parts/package-card.php:8
+Stack trace:
+#0 /Users/raju/www/goglobalyatra/wp-includes/template.php(816): require()
+#1 /Users/raju/www/goglobalyatra/wp-includes/template.php(749): load_template('/Users/raju/www...', false, Array)
+#2 /Users/raju/www/goglobalyatra/wp-includes/general-template.php(206): locate_template(Array, true, false, Array)
+#3 /Users/raju/www/goglobalyatra/wp-content/themes/goglobalyatra/front-page.php(149): get_template_part('template-parts/...')
+#4 /Users/raju/www/goglobalyatra/wp-includes/template-loader.php(132): include('/Users/raju/www...')
+#5 /Users/raju/www/goglobalyatra/wp-blog-header.php(19): require_once('/Users/raju/www...')
+#6 /Users/raju/www/goglobalyatra/index.php(17): require('/Users/raju/www...')
+#7 /Users/raju/www/goglobalyatra/router.php(22): require('/Users/raju/www...')
+#8 {main}
+  thrown in /Users/raju/www/goglobalyatra/wp-content/themes/goglobalyatra/template-parts/package-card.php on line 8
+[21-Aug-2026 15:34:09 UTC] Automatic updates starting...
+[21-Aug-2026 15:34:11 UTC]   Automatic theme updates starting...
+[21-Aug-2026 15:34:11 UTC]   Automatic theme updates complete.
+[21-Aug-2026 15:34:11 UTC] Automatic updates complete.
+[21-Aug-2026 15:34:20 UTC] PHP Deprecated:  Using null as an array offset is deprecated, use an empty string instead in /Users/raju/www/goglobalyatra/wp-content/plugins/wordpress-seo/src/memoizers/meta-tags-context-memoizer.php on line 135
+[21-Aug-2026 15:34:20 UTC] PHP Deprecated:  Using null as an array offset is deprecated, use an empty string instead in /Users/raju/www/goglobalyatra/wp-content/plugins/wordpress-seo/src/memoizers/presentation-memoizer.php on line 49
+[21-Aug-2026 15:34:20 UTC] PHP Deprecated:  Using null as an array offset is deprecated, use an empty string instead in /Users/raju/www/goglobalyatra/wp-content/plugins/wordpress-seo/src/memoizers/presentation-memoizer.php on line 63
+[21-Aug-2026 15:34:20 UTC] PHP Deprecated:  Using null as an array offset is deprecated, use an empty string instead in /Users/raju/www/goglobalyatra/wp-content/plugins/wordpress-seo/src/memoizers/presentation-memoizer.php on line 66
+[21-Aug-2026 15:34:20 UTC] PHP Deprecated:  Using null as an array offset is deprecated, use an empty string instead in /Users/raju/www/goglobalyatra/wp-content/plugins/wordpress-seo/src/memoizers/meta-tags-context-memoizer.php on line 154
+[21-Aug-2026 15:34:20 UTC] PHP Deprecated:  Using null as an array offset is deprecated, use an empty string instead in /Users/raju/www/goglobalyatra/wp-content/plugins/wordpress-seo/src/memoizers/meta-tags-context-memoizer.php on line 157
+[21-Aug-2026 15:45:41 UTC] PHP Deprecated:  Using null as an array offset is deprecated, use an empty string instead in /Users/raju/www/goglobalyatra/wp-content/plugins/wordpress-seo/src/memoizers/meta-tags-context-memoizer.php on line 135
+[21-Aug-2026 15:45:41 UTC] PHP Deprecated:  Using null as an array offset is deprecated, use an empty string instead in /Users/raju/www/goglobalyatra/wp-content/plugins/wordpress-seo/src/memoizers/presentation-memoizer.php on line 49
+[21-Aug-2026 15:45:41 UTC] PHP Deprecated:  Using null as an array offset is deprecated, use an empty string instead in /Users/raju/www/goglobalyatra/wp-content/plugins/wordpress-seo/src/memoizers/presentation-memoizer.php on line 63
+[21-Aug-2026 15:45:41 UTC] PHP Deprecated:  Using null as an array offset is deprecated, use an empty string instead in /Users/raju/www/goglobalyatra/wp-content/plugins/wordpress-seo/src/memoizers/presentation-memoizer.php on line 66
+[21-Aug-2026 15:45:41 UTC] PHP Deprecated:  Using null as an array offset is deprecated, use an empty string instead in /Users/raju/www/goglobalyatra/wp-content/plugins/wordpress-seo/src/memoizers/meta-tags-context-memoizer.php on line 154
+[21-Aug-2026 15:45:41 UTC] PHP Deprecated:  Using null as an array offset is deprecated, use an empty string instead in /Users/raju/www/goglobalyatra/wp-content/plugins/wordpress-seo/src/memoizers/meta-tags-context-memoizer.php on line 157
+[21-Aug-2026 15:45:44 UTC] PHP Deprecated:  Using null as an array offset is deprecated, use an empty string instead in /Users/raju/www/goglobalyatra/wp-content/plugins/wordpress-seo/src/memoizers/meta-tags-context-memoizer.php on line 135
+[21-Aug-2026 15:45:44 UTC] PHP Deprecated:  Using null as an array offset is deprecated, use an empty string instead in /Users/raju/www/goglobalyatra/wp-content/plugins/wordpress-seo/src/memoizers/presentation-memoizer.php on line 49
+[21-Aug-2026 15:45:44 UTC] PHP Deprecated:  Using null as an array offset is deprecated, use an empty string instead in /Users/raju/www/goglobalyatra/wp-content/plugins/wordpress-seo/src/memoizers/presentation-memoizer.php on line 63
+[21-Aug-2026 15:45:44 UTC] PHP Deprecated:  Using null as an array offset is deprecated, use an empty string instead in /Users/raju/www/goglobalyatra/wp-content/plugins/wordpress-seo/src/memoizers/presentation-memoizer.php on line 66
+[21-Aug-2026 15:45:44 UTC] PHP Deprecated:  Using null as an array offset is deprecated, use an empty string instead in /Users/raju/www/goglobalyatra/wp-content/plugins/wordpress-seo/src/memoizers/meta-tags-context-memoizer.php on line 154
+[21-Aug-2026 15:45:44 UTC] PHP Deprecated:  Using null as an array offset is deprecated, use an empty string instead in /Users/raju/www/goglobalyatra/wp-content/plugins/wordpress-seo/src/memoizers/meta-tags-context-memoizer.php on line 157
+[21-Aug-2026 15:48:54 UTC] PHP Deprecated:  Using null as an array offset is deprecated, use an empty string instead in /Users/raju/www/goglobalyatra/wp-content/plugins/wordpress-seo/src/memoizers/meta-tags-context-memoizer.php on line 135
+[21-Aug-2026 15:48:54 UTC] PHP Deprecated:  Using null as an array offset is deprecated, use an empty string instead in /Users/raju/www/goglobalyatra/wp-content/plugins/wordpress-seo/src/memoizers/presentation-memoizer.php on line 49
+[21-Aug-2026 15:48:54 UTC] PHP Deprecated:  Using null as an array offset is deprecated, use an empty string instead in /Users/raju/www/goglobalyatra/wp-content/plugins/wordpress-seo/src/memoizers/presentation-memoizer.php on line 63
+[21-Aug-2026 15:48:54 UTC] PHP Deprecated:  Using null as an array offset is deprecated, use an empty string instead in /Users/raju/www/goglobalyatra/wp-content/plugins/wordpress-seo/src/memoizers/presentation-memoizer.php on line 66
+[21-Aug-2026 15:48:54 UTC] PHP Deprecated:  Using null as an array offset is deprecated, use an empty string instead in /Users/raju/www/goglobalyatra/wp-content/plugins/wordpress-seo/src/memoizers/meta-tags-context-memoizer.php on line 154
+[21-Aug-2026 15:48:54 UTC] PHP Deprecated:  Using null as an array offset is deprecated, use an empty string instead in /Users/raju/www/goglobalyatra/wp-content/plugins/wordpress-seo/src/memoizers/meta-tags-context-memoizer.php on line 157
+[22-Aug-2026 00:55:44 UTC] Automatic updates starting...
+[22-Aug-2026 00:55:46 UTC]   Automatic theme updates starting...
+[22-Aug-2026 00:55:46 UTC]   Automatic theme updates complete.
+[22-Aug-2026 00:55:46 UTC] Automatic updates complete.
